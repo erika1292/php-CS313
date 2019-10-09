@@ -1,0 +1,192 @@
+<html>
+
+<head>
+  <title>My Cart</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<!--JavaScript files -->
+	<script src="jquery-2.2.3.js"></script>
+	<script src="js/bootstrap.min"></script>
+	<script src="js/jquery.mycart.js"></script>
+  <script src="js/jquery.mycart.min"></script>
+  
+<!-- JavaScript Add to Cart -->
+<script>
+$(document).ready(function () {
+  $('form.addToCart').on('submit', function(e) {
+      e.preventDefault();
+
+      $.ajax({
+          url: $(this).attr('action'),
+          type: $(this).attr('method'),
+          data: $(this).serialize(),
+
+          success: function (data) {
+              alert("Item added to cart!");
+          },
+
+          error: function (jxhr, text, error) {
+              alert(error);
+          }
+      });
+  });
+}); 
+</script>
+
+<!-- Main Navigation Bar -->
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="#"><span class="fas fa-dot-circle" style="color:#ffffff"></span></a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+	  <li class="nav-item">
+            <a class="nav-link" href="index.html">CS313 Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="home.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.html">Products</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li><a href="customerInfo.html" style="color:#ffffff;"><span class="fas fa-cart-plus" style="color:#ffffff"> <span class="badge badge-light my-cart-badge"></span></span></a></li>
+        </ul>
+    </nav>
+
+
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Products</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3 text-center">
+        <img src="images/butterfly.jpg" width="150px" height="150px">
+        <br>
+        Butterfly <strong>$25</strong>
+        <br>
+        <button class="btn btn-danger my-cart-btn" data-id="1" data-name="product 1" data-summary="summary 1" data-price="25" data-quantity="1" data-image="images/butterfly.jpg">Add to Cart</button>
+		<!-- -->
+      </div>
+
+      <div class="col-md-3 text-center">
+        <img src="images/crab.jpeg" width="150px" height="150px">
+        <br>
+        Giant Crab - <strong>$20</strong>
+        <br>
+        <button class="btn btn-danger my-cart-btn" data-id="2" data-name="product 2" data-summary="summary 2" data-price="20" data-quantity="1" data-image="images/crab.jpeg">Add to Cart</button>
+      </div>
+
+      <div class="col-md-3 text-center">
+        <img src="images/unicorn.jpg" width="150px" height="150px">
+        <br>
+        Magical Unicorn - <strong>$30</strong>
+        <br>
+        <button class="btn btn-danger my-cart-btn" data-id="3" data-name="product 3" data-summary="summary 3" data-price="30" data-quantity="1" data-image="images/unicorn.jpg">Add to Cart</button>
+      </div>
+
+      <div class="col-md-3 text-center">
+        <img src="images/donut.jpg" width="150px" height="150px">
+        <br>
+        Donut - <strong>$40</strong>
+        <br>
+        <button class="btn btn-danger my-cart-btn" data-id="4" data-name="product 4" data-summary="summary 4" data-price="40" data-quantity="1" data-image="images/donut.jpg">Add to Cart</button>
+      </div>
+
+      <div class="col-md-3 text-center">
+        <img src="images/horse.jpg" width="150px" height="150px">
+        <br>
+        Horse - <strong>$50</strong>
+        <br>
+        <button class="btn btn-danger my-cart-btn" data-id="5" data-name="product 5" data-summary="summary 5" data-price="50" data-quantity="1" data-image="images/horse.jpg">Add to Cart</button>
+      </div>
+
+    </div>
+
+
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script type='text/javascript' src="js/bootstrap.min.js"></script>
+    <script type='text/javascript' src="js/jquery.mycart.js"></script>
+    <script type="text/javascript">
+    $(function () {
+
+      var goToCartIcon = function($addTocartBtn){
+        var $cartIcon = $(".my-cart-icon");
+        var $image = $('<img width="30px" height="30px" src="' + $addTocartBtn.data("image") + '"/>').css({"position": "fixed", "z-index": "999"});
+        $addTocartBtn.prepend($image);
+        var position = $cartIcon.position();
+        $image.animate({
+          top: position.top,
+          left: position.left
+        }, 500 , "linear", function() {
+          $image.remove();
+        });
+      }
+
+      $('.my-cart-btn').myCart({
+        currencySymbol: '$',
+        classCartIcon: 'my-cart-icon',
+        classCartBadge: 'my-cart-badge',
+        classProductQuantity: 'my-product-quantity',
+        classProductRemove: 'my-product-remove',
+        classCheckoutCart: 'my-cart-checkout',
+        affixCartIcon: true,
+        showCheckoutModal: true,
+        numberOfDecimals: 2,
+        cartItems: [],
+        clickOnAddToCart: function($addTocart){
+          goToCartIcon($addTocart);
+        },
+        afterAddOnCart: function(products, totalPrice, totalQuantity) {
+          console.log("afterAddOnCart", products, totalPrice, totalQuantity);
+        },
+        clickOnCartIcon: function($cartIcon, products, totalPrice, totalQuantity) {
+          console.log("cart icon clicked", $cartIcon, products, totalPrice, totalQuantity);
+        },
+        checkoutCart: function(products, totalPrice, totalQuantity) {
+          var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
+          checkoutString += "\n\n id \t name \t summary \t price \t quantity \t image path";
+          $.each(products, function(){
+            checkoutString += ("\n " + this.id + " \t " + this.name + " \t " + this.summary + " \t " + this.price + " \t " + this.quantity + " \t " + this.image);
+          });
+          alert(checkoutString)
+          console.log("checking out", products, totalPrice, totalQuantity);
+        },
+        /* getDiscountPrice: function(products, totalPrice, totalQuantity) {
+          console.log("calculating discount", products, totalPrice, totalQuantity);
+          return totalPrice * 0.5;
+        } */
+      });
+
+      $("#addNewProduct").click(function(event) {
+        var currentElementNo = $(".row").children().length + 1;
+        $(".row").append('<div class="col-md-3 text-center"><img src="images/img_empty.png" width="150px" height="150px"><br>product ' + currentElementNo + ' - <strong>$' + currentElementNo + '</strong><br><button class="btn btn-danger my-cart-btn" data-id="' + currentElementNo + '" data-name="product ' + currentElementNo + '" data-summary="summary ' + currentElementNo + '" data-price="' + currentElementNo + '" data-quantity="1" data-image="images/img_empty.png">Add to Cart</button><a href="#" class="btn btn-info">Details</a></div>')
+      });
+    });
+    </script>
+
+  </div>
+</body>
+
+</html>
