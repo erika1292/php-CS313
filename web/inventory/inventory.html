@@ -1,0 +1,145 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<style>
+#inventory {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#inventory
+ td, #inventory
+ th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#inventory
+ tr:nth-child(even){background-color: #f2f2f2;}
+
+#inventory
+ tr:hover {background-color: rgb(96, 216, 170);}
+
+#inventory
+ th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(9, 107, 74);
+  color: white;
+</style>
+</head>
+<body>
+<h1>Computer Inventory</h1>
+<table id="inventory">
+        <tr>
+          <th>Device Name</th>
+          <th>Device Type</th>
+          <th>Owner</th>
+          <th>Serial Number</th>
+          <th>Install Date</th>
+        </tr>
+        <tr>
+          <td>Alfreds Futterkiste</td>
+          <td>Maria Anders</td>
+          <td>Germany</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Berglunds snabbköp</td>
+          <td>Christina Berglund</td>
+          <td>Sweden</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Centro comercial Moctezuma</td>
+          <td>Francisco Chang</td>
+          <td>Mexico</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Island Trading</td>
+          <td>Helen Bennett</td>
+          <td>UK</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Königlich Essen</td>
+          <td>Philip Cramer</td>
+          <td>Germany</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Laughing Bacchus Winecellars</td>
+          <td>Yoshi Tannamuri</td>
+          <td>Canada</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Magazzini Alimentari Riuniti</td>
+          <td>Giovanni Rovelli</td>
+          <td>Italy</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>North/South</td>
+          <td>Simon Crowther</td>
+          <td>UK</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+        <tr>
+          <td>Paris spécialités</td>
+          <td>Marie Bertrand</td>
+          <td>France</td>
+          <td>1234</td>
+          <td>2019</td>
+        </tr>
+      </table>
+<!--
+<ul>
+<form name="insert" action="../db/myDb.sql" method="POST" >
+<li>Device Name:</li><li><input type="text" name="deviceName" /></li>
+<li>Device Type:</li><li><input type="text" name="deviceType" /></li>
+<li>Device Owner:</li><li><input type="text" name="deviceOwner" /></li>
+<li>Serial Number:</li><li><input type="text" name="sn" /></li>
+<li>Install Date:</li><li><input type="text" name="installdate"</li>
+<li><input type="submit" /></li>
+</form>
+</ul>
+
+<ul>
+<form name="insert" action="../db/myDb.sql" method="POST" >
+<li>Laptop:</li><li><input type="text" name="laptop" /></li>
+<li>Computer:</li><li><input type="text" name="computer" /></li>
+<li>iPad:</li><li><input type="text" name="iPad" /></li>
+<li><input type="submit" /></li>
+</form>
+</ul>
+-->
+
+
+</body>
+</html> 
+
+<?php
+$db = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=myadmin123");
+$query = "INSERT INTO book VALUES ('$_POST[bookid]','$_POST[book_name]',
+'$_POST[price]','$_POST[dop]')";
+$result = pg_query($query); 
+?> 
