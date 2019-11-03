@@ -16,7 +16,7 @@ $db = connect_db();
       $v = $_POST['owner'];
       $c = $_POST['sn'];
       $t = $_POST['topic'];
-      $db->prepare("INSERT INTO public.scripture(dname, dtype, owner,sn) VALUES(:dname, :dtype, owner, sn)");
+      $db->prepare("INSERT INTO public.inventory(dname, dtype, owner,sn) VALUES(:dname, :dtype, owner, sn)");
       $stmt->bindValue(':dname', $b, PDO::PARAM_STR);
       $stmt->bindValue(':dtype', $ch, PDO::PARAM_INT);
       $stmt->bindValue('owner', $v, PDO::PARAM_INT);
